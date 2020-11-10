@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/route-1', function(){
+      return 'Sampel Halaman Route 1';
+    })->middleware(['auth' , 'email_verified']);
+    
+    Route::get('/route-2', function(){
+      return 'Sampel Halaman Route 2';
+    })->middleware(['auth' , 'email_verified' , 'is_admin']);
+    

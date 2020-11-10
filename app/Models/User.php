@@ -41,4 +41,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function get_user_role_id()
+     {
+         $role = \App\Models\Role::where('name' , 'user')->first();
+         return $role->id;
+     }
+
+     public static function boot()
+     {
+       parent::boot();
+
+       static::creating(function ($model) {
+           $model->role_id = $model->get_user_role_id();
+       });
+     }
+
+     public function isAdminMethod()
+     {
+       if ($this->role_id === $this->get_user_role_id() ) {
+         return false;
+       }
+ 
+       return true;
+     } 
+
 }
