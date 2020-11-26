@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class RegisterController extends Controller
+class RegenerateOtpController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,18 +17,19 @@ class RegisterController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'email' => 'required|unique:users,email|email',
-            'name' => 'required',
+            'email' => 'required',
         ]);
 
-        $data_request = $request->all();
-        $user = User::create($data_request);
+        $user = User::where('email', $request->email)->first();
+        
+        // Panggil Method Generate OTP Codenya
+        $user->generate_otp_code();
 
         $data['user'] = $user;
 
         return response()->json([
             'response_code' => '00',
-            'response_message' => 'New User has been successfully registered, Please check email for OTP Code',
+            'response_message' => 'New OTP Code has been successfully regenerated, Please check your Email',
             'data' => $data
         ]);
     }
