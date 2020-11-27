@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Events\UserRegistered;
 use App\Models\User;
 use Validator;
 
@@ -17,16 +18,6 @@ class RegisterController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|string|between:2,100',
-        //     'email' => 'required|string|email|max:100|unique:users',
-        //     'password' => 'required|string|confirmed|min:6',
-        // ]);
-
-        // $data_request = $request->all();
-        // $user = User::create($data_request);
-
-        // $data['user'] = $user;
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
@@ -42,6 +33,8 @@ class RegisterController extends Controller
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
         ));
+
+        event(new UserRegistered($user , 'register'));
 
         return response()->json([
             'response_code' => '00',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Events\UserRegistered;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -24,6 +25,8 @@ class RegenerateOtpController extends Controller
         
         // Panggil Method Generate OTP Codenya
         $user->generate_otp_code();
+
+        event(new UserRegistered($user, 'regenerate'));
 
         $data['user'] = $user;
 
