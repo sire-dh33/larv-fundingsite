@@ -25,12 +25,19 @@ class CampaignController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:png,jpg,jpeg'
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'address' => 'required',
+            'required' => 'required',
+            'collected'=> 'required',
+
         ]);
 
         $campaign = Campaign::create([
             'title' => $request->title,
             'description' => $request->description,
+            'address' => $request->address,
+            'required' => $request->required,
+            'collected' => $request->collected,
             
             // Kepedulian terhadap lingkungan sekitar adalah salah satu bentuk kepedulian sosial yang dapat diwujudkan oleh siapa saja.
             // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in magna ac tellus fringilla eleifend.
@@ -81,6 +88,20 @@ class CampaignController extends Controller
         return response()->json([
             'response_code' => '00',
             'response_message' => 'Campaigns has been displayed successfully',
+            'data' => $data,
+
+        ], 200);
+    }
+
+    public function detail($id)
+    {
+        $campaign = Campaign::find($id);
+
+        $data['campaign'] = $campaign;
+
+        return response()->json([
+            'response_code' => '00',
+            'response_message' => 'Campaign data has been displayed successfully',
             'data' => $data,
 
         ], 200);

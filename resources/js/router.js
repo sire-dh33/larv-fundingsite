@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from './views/Home.vue'
 import Donations from './views/Donations.vue'
 import Campaigns from './views/Campaigns.vue'
+import Campaign from './views/Campaign.vue'
 import Blogs from './views/Blogs.vue'
 
 Vue.use(VueRouter)
@@ -25,6 +26,11 @@ const router = new VueRouter({
             path: '/campaigns',
             name: 'campaigns',
             component: Campaigns
+        },
+        {
+            path: '/campaign/:id',
+            name: 'campaign',
+            component: Campaign
         },
         {
             path: '/blogs',

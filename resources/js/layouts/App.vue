@@ -54,7 +54,7 @@
         </v-navigation-drawer>
 
         <!-- header -->
-        <v-app-bar app color="success" dark>
+        <v-app-bar app color="success" dark v-if="isHome">
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
             <v-toolbar-title>Larv Fundingsite</v-toolbar-title>
@@ -63,12 +63,13 @@
             <v-spacer></v-spacer>
             
             <v-btn icon>
-                <v-badge color="orange" overlap>
+                <v-badge color="orange" overlap v-if="transaction>0">
                     <template v-slot:badge >
-                        <span>3</span>
+                        <span> {{ transaction }} </span>
                     </template>
                     <v-icon>mdi-cash-multiple</v-icon>
                 </v-badge>
+                <v-icon v-else>mdi-cash-multiple</v-icon>
             </v-btn>
 
             <v-text-field
@@ -80,6 +81,25 @@
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
             ></v-text-field>
+
+        </v-app-bar>
+
+        <v-app-bar app color="success" dark v-else>
+            <v-btn icon @click.stop="$router.go(-1)">
+                <v-icon>mdi-arrow-left-circle</v-icon>
+            </v-btn>
+            <!-- Divider -->
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+                <v-badge color="orange" overlap v-if="transaction>0">
+                    <template v-slot:badge >
+                        <span> {{ transaction }} </span>
+                    </template>
+                    <v-icon>mdi-cash-multiple</v-icon>
+                </v-badge>
+                <v-icon v-else>mdi-cash-multiple</v-icon>
+            </v-btn>
 
         </v-app-bar>
 
@@ -116,6 +136,14 @@
                 { title : 'Campaign', icon : 'mdi-hand-heart', route: '/campaigns' },
             ],
             guest: false,
-        })   
+        }),
+        computed: {
+            isHome () {
+                return (this.$route.path==='/' | this.$route.path==='/home')
+            },
+            transaction () {
+                return this.$store.getters.transaction
+            }
+        }   
     }
 </script>
