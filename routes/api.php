@@ -35,8 +35,27 @@ Route::group([
     'middleware' => ['api', 'email_verified', 'auth:api'],
     'namespace' => 'App\Http\Controllers'
 ], function(){
-
+    
     Route::get('profile/show', 'ProfileController@show');
     Route::post('profile/update', 'ProfileController@update');
+    
+});
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'campaign',
+    'namespace' => 'App\Http\Controllers'
+], function () {
+    Route::get('random/{count}' , 'CampaignController@random');
+    Route::post('store' , 'CampaignController@store');
+    Route::get('/' , 'CampaignController@index');
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'blog',
+    'namespace' => 'App\Http\Controllers'
+], function () {
+    Route::get('random/{count}' , 'BlogController@random');
+    Route::post('store' , 'BlogController@store');
 });

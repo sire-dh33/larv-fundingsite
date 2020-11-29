@@ -30,11 +30,23 @@ class ProfileController extends Controller
             $photo_profile_name = Str::slug($user->name, '-') . '-' . $user->id . "." . $photo_profile_extension;
             $photo_profile_folder =  '/photos/users/photo-profile/';
             $photo_profile_location = $photo_profile_folder . $photo_profile_name;
-            $photo_profile->move(public_path($photo_profile_folder) , $photo_profile_name);
             
-            $user->update([
-                'photo_profile' => $photo_profile_location,
-            ]);
+            try {
+                $photo_profile->move(public_path($photo_profile_folder) , $photo_profile_name);
+                
+                $user->update([
+                    'photo_profile' => $photo_profile_location,
+                ]);
+
+            } catch (\Exception $e) {
+                $data['user'] = $user;
+
+                return response()->json([
+                    'response_code' => '01',
+                    'response_message' => 'Failed to update Profile Photo',
+                    'data' => $data,
+                ], 200);
+            }
                 
             $user->update([
                 'name' => $request->name,
