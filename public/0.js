@@ -91,7 +91,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-card-action",
+            "v-card-actions",
             [
               _c("v-progress-linear", {
                 attrs: { color: "blue-grey", height: "7" },
@@ -108,7 +108,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-card-action",
+            "v-card-actions",
             [
               _c("v-icon", [_vm._v("mdi-cash")]),
               _vm._v(" "),

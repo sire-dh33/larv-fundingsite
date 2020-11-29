@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
     export default {
         data: () => ({            
             campaign: {},  // Hanya satu Object, bukan array of objects
@@ -70,9 +71,13 @@
                 })
 
             },
-            donate() {
-                this.$store.commit('insert')
-            }
+            ...mapMutations({
+                'donate' : 'transaction/insert'  // "Left" New Instance, "Right" from modules &then $store
+            }),
+
+            // donate() {
+            //     this.$store.commit('insert')
+            // }
         }
     }
 </script>

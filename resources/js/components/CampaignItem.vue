@@ -12,20 +12,20 @@
                 ></v-card-title>
             </v-img>
 
-            <v-card-action>
+            <v-card-actions>
                 <v-progress-linear
                     v-model="progress"
                     color="blue-grey"
                     height="7"
                 ></v-progress-linear>
-            </v-card-action>
+            </v-card-actions>
 
-            <v-card-action>
+            <v-card-actions>
                 <v-icon>mdi-cash</v-icon>
                 <span> Rp {{ campaign.required.toLocaleString('id-ID') }} </span>
                 <v-spacer></v-spacer>
                 <span> {{ progress }}% </span>
-            </v-card-action>
+            </v-card-actions>
         </v-card>
     </div>
 </template>
