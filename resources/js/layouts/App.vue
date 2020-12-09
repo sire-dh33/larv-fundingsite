@@ -2,6 +2,15 @@
     <!-- App.vue -->
 
     <v-app>
+
+        <!-- Alert -->
+        <alert></alert>
+
+        <!-- Search Bar -->
+        <v-dialog v-model="dialog" fullscreen hide-overlay transition="scale-transition">
+            <search @closed="closeDialog"></search>
+        </v-dialog>
+
         <!-- sidebar -->
         <v-navigation-drawer app v-model="drawer">
             <v-list>
@@ -10,7 +19,7 @@
                         <v-img src="https://randomuser.me/api/portraits/men/71.jpg"></v-img>
                     </v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title>Thomas Mueller</v-list-item-title>
+                        <v-list-item-title>Sultan Dharmawan</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
 
@@ -128,8 +137,14 @@
 
 <script>
     import { mapGetters } from 'vuex'
+    import Alert from '../components/Alert'
+    import Search from '../components/Search'
     export default {
         name : "App",
+        components: {
+            Alert,
+            Search,
+        },
         data : () => ({
             drawer : false,
             menus : [
@@ -137,18 +152,24 @@
                 { title : 'Campaign', icon : 'mdi-hand-heart', route: '/campaigns' },
             ],
             guest: false,
+            dialog: true,
         }),
         computed: {
             isHome () {
                 return (this.$route.path==='/' | this.$route.path==='/home')
             },
             ...mapGetters({
-                'transactions' : 'transaction/transaction'  // "Left" New Instance, "Right" from modules  &then $store
+                'transactions' : 'transaction/transactions'  // "Left" New Instance, "Right" from modules  &then $store
             }),
 
             // transaction () {
             //     return this.$store.getters.transaction
             // }
-        }   
+        },
+        methods: {
+            closeDialog (value) {
+                   this.dialog = value
+            }
+        }
     }
 </script>

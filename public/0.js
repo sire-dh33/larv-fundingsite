@@ -83,7 +83,7 @@ var render = function() {
             },
             [
               _c("v-card-title", {
-                staticClass: "fill-hight align-end",
+                staticClass: "fill-height align-end",
                 domProps: { textContent: _vm._s(_vm.campaign.title) }
               })
             ],

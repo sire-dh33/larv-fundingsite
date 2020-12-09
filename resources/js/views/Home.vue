@@ -71,7 +71,7 @@
 
                 .catch((error) => {
                     let { response } = error
-                    console.log(responses)
+                    console.log(responses + " - Error")
                 })
             
             axios.get('api/blog/random/5')
@@ -83,7 +83,7 @@
 
                 .catch((error) => {
                     let { response } = error
-                    console.log(responses)
+                    console.log(responses + " - Error")
                 })
 
         }

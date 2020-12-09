@@ -7,7 +7,7 @@
                 height="200px"
             >
                 <v-card-title
-                    class="fill-hight align-end"
+                    class="fill-height align-end"
                     v-text="campaign.title"
                 ></v-card-title>
             </v-img>

@@ -12,6 +12,6 @@ export default {
 
     },
     getters: {
-        transaction : state => state.transactions
+        transactions : state => state.transactions
     }
 }
