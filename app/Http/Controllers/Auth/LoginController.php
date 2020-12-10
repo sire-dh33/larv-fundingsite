@@ -27,16 +27,6 @@ class LoginController extends Controller
             //     return response()->json(['error' => 'Unauthorized'], 401);
         // }
 
-        // $data['token'] = $token;
-        // $data['user'] = auth()->user();
-        
-        // return response()->json([
-        //     'response_code' => '00',
-        //     'response_message' => 'User has successfully logged in',
-        //     'data' => $data,
-                
-        // ], 200);
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
@@ -47,7 +37,7 @@ class LoginController extends Controller
         }
 
         if (! $token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Unrecognized Email or Password'], 401);
         }
 
         
@@ -55,14 +45,17 @@ class LoginController extends Controller
 
     }
 
+    
     protected function createNewToken($token){
+
+        $data['token'] = $token;
+        $data['user'] = auth()->user();
+
         return response()->json([
-            'message' => 'You are successfully logged in',
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
-        ]);
+            'response_code' => '00',
+            'response_message' => 'User logged in successfully',
+            'data' => $data,
+        ], 200);
     }
 
 }
