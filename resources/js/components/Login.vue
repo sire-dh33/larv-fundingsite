@@ -86,10 +86,11 @@ export default {
 					console.log(data)
 					this.setAuth(data)
 					if(this.user.user.id.length>0){
+						console.log('successfully logged in')
 						this.setAlert({
 							status : true,
 							color  : 'success',
-							text   : 'Login success',
+							text   : 'Successfully logged in',
 						})
 						this.close()
 					}
@@ -97,7 +98,7 @@ export default {
 						this.setAlert({
 							status  : true,
 							color   : 'error',
-							text    : 'Login failed',
+							text    : 'Failed to login',
 						})
 					}
 				})

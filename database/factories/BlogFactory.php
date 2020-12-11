@@ -25,7 +25,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->company,
             'description' => $this->faker->paragraph,
-            'image' => 'photos/assets/blog/Blog4.jpg',
+            'image' => 'photos/blog/Blog4.jpg',
         ];
     }
 }

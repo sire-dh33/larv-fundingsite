@@ -193,6 +193,7 @@
                 setDialogComponent : 'dialog/setComponent',
                 setAuth : 'auth/set',
                 setAlert : 'alert/set',
+                checkToken : 'auth/checkToken'
             }),
             logout () {
                 let config = {
@@ -206,7 +207,7 @@
                     this.setAlert({
                         status : true,
                         color : 'success',
-                        text : 'Logout successfully'
+                        text : 'Logged out successfully'
                     })
                 })
                 .catch((error) => {
@@ -218,6 +219,13 @@
                     })
                 })
             }
-        }
+        },
+
+        mounted() {
+            if(this.user) {
+                this.checkToken(this.user)
+            }
+        },
+
     }
 </script>

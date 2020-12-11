@@ -31,7 +31,9 @@ class RegisterController extends Controller
 
         $user = User::create(array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)]
+                    ['password' => bcrypt($request->password),
+                     'photo_profile' => 'photos/users/photo-profile/default.png'
+                    ],
         ));
 
         event(new UserRegistered($user , 'register'));

@@ -1,10 +1,8 @@
 <template>
     <div>
         <v-card v-if="campaign.id">
-                <!-- :src="campaign.image"
-                :lazy-src="`https://picsum.photos/10/6?image=`" -->
-            <v-img 
-                :src="require('./Charity.jpg')"
+            <v-img
+                :src="campaign.image"
                 class="black--text"
                 height="300px"
             >
