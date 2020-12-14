@@ -165,10 +165,13 @@ return [
         /*
         * Package Service Providers...
         */
-
+        
         // Package JWT Auth by Tymon
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         
+        // Package Socialite
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

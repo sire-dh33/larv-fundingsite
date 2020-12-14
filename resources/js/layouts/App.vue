@@ -7,9 +7,6 @@
         <alert></alert>
 
         <!-- Search Bar -->
-        <!-- <v-dialog v-model="dialog" fullscreen hide-overlay transition="scale-transition">
-            <search @closed="closeDialog"></search>
-        </v-dialog> -->
 
         <keep-alive>
 	  	    <v-dialog v-model="dialog" fullscreen hide-overlay persistent transition="dialog-bottom-transition">
@@ -69,10 +66,10 @@
         </v-navigation-drawer>
 
         <!-- header -->
-        <v-app-bar app color="success" dark v-if="isHome">
+        <v-app-bar app color="light-blue darken-2" dark v-if="isHome">
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-toolbar-title>Larv Fundingsite</v-toolbar-title>
+            <v-toolbar-title>Charity Organization</v-toolbar-title>
 
             <!-- divider -->
             <v-spacer></v-spacer>
@@ -100,7 +97,7 @@
 
         </v-app-bar>
 
-        <v-app-bar app color="success" dark v-else>
+        <v-app-bar app color="light-blue darken-2" dark v-else>
             <v-btn icon @click.stop="$router.go(-1)">
                 <v-icon>mdi-arrow-left-circle</v-icon>
             </v-btn>
@@ -167,11 +164,11 @@
                 return (this.$route.path==='/' | this.$route.path==='/home')
             },
             ...mapGetters({
-                transactions : 'transaction/transactions',  // "Left" New Instance, "Right" from modules  &then $store
-                guest : 'auth/guest',
-                user : 'auth/user',
-                dialogStatus : 'dialog/status',
-                currentComponent : 'dialog/component',
+                transactions    : 'transaction/transactions',  // "Left" New Instance, "Right" from modules  &then $store
+                guest           : 'auth/guest',
+                user            : 'auth/user',
+                dialogStatus    : 'dialog/status',
+                currentComponent: 'dialog/component',
             }),
             dialog:{
                 get () {
@@ -184,10 +181,6 @@
 
         },
         methods: {
-            // closeDialog (value) {
-            //        this.dialog = value
-            // }
-
             ...mapActions({
                 setDialogStatus : 'dialog/setStatus',
                 setDialogComponent : 'dialog/setComponent',
@@ -221,11 +214,12 @@
             }
         },
 
-        mounted() {
-            if(this.user) {
-                this.checkToken(this.user)
-            }
-        },
+        // mounted() {
+        //     if(this.user) {
+        //         this.checkToken(this.user)
+        //     }
+        //     // this.$router.push({ name : 'home' })
+        // },
 
     }
 </script>

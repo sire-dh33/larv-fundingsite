@@ -13,6 +13,7 @@ export default {
             commit('set', payload)
         },
         checkToken : ({commit}, payload) => {
+            
             let config = {
                 headers : {
                     'Authorization' : 'Bearer' + payload.token,
@@ -24,7 +25,6 @@ export default {
                 commit('set', payload)
             })
             .catch((error) => {
-                console.log('(Unauthorized) - Not logged in')
                 commit('set', {})
             })
         },

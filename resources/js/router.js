@@ -6,6 +6,7 @@ import Donations from './views/Donations.vue'
 import Campaigns from './views/Campaigns.vue'
 import Campaign from './views/Campaign.vue'
 import Blogs from './views/Blogs.vue'
+import Social from './views/Social.vue'
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,12 @@ const router = new VueRouter({
             name: 'blogs',
             component: Blogs
         },
+        {
+            path: '/auth/social/:provider/callback',
+            name: 'social',
+            component: Social
+        },
+
     ]
 })
 

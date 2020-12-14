@@ -16,17 +16,6 @@ class LoginController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // $request->validate([
-        //     'email' => 'required',
-        //     'password' => 'required',
-        // ]);
-
-        // $credentials = $request->only(['email', 'password']);
-
-        // if (! $token = auth()->attempt($credentials)) {
-            //     return response()->json(['error' => 'Unauthorized'], 401);
-        // }
-
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',
@@ -42,9 +31,7 @@ class LoginController extends Controller
 
         
         return $this->createNewToken($token);
-
     }
-
     
     protected function createNewToken($token){
 

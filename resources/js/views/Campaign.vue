@@ -2,7 +2,7 @@
     <div>
         <v-card v-if="campaign.id">
             <v-img
-                :src="campaign.image"
+                :src="baseurl + campaign.image"
                 class="black--text"
                 height="300px"
             >
@@ -48,6 +48,7 @@ import { mapActions, mapMutations } from 'vuex'
     export default {
         data: () => ({            
             campaign: {},  // Hanya satu Object, bukan array of objects
+            baseurl : 'http://localhost:8000/',
         }),
         created(){
             this.go()
