@@ -1,10 +1,10 @@
 # Crowdfunding App
 > A simple Crowdfunding App using Laravel and Vue Js
 
-https://drive.google.com/file/d/1Pmj6sDcHoqjBU8iS2F_zgFuFf-fXhd-i/view?usp=sharing
+![Imgur](https://i.imgur.com/F0GYeGe.png)
 
-## Demo Video
-https://drive.google.com/file/d/1jGoyolZ4LtwMsRWOnX79ctpP8z9MNuc3/view?usp=sharing
+## Demo Video 
+-- **<a href="https://drive.google.com/file/d/1jGoyolZ4LtwMsRWOnX79ctpP8z9MNuc3/view?usp=sharing">Link</a>**
 
 ## Features
 - Laravel 8
